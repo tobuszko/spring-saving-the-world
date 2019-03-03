@@ -1,10 +1,7 @@
 package pl.edu.wszib.savingtheworld.DAO;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -17,6 +14,11 @@ public class Faktury {
     public double kwota;
     public String tytul;
 
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="podatnik_id", nullable = false)
+    Podatnik podatnik;
+
     public Faktury () {
 
     }
@@ -24,6 +26,14 @@ public class Faktury {
     public Faktury(double kwota, String tytul) {
         this.kwota = kwota;
         this.tytul = tytul;
+    }
+
+    public Podatnik getPodatnik() {
+        return podatnik;
+    }
+
+    public void setPodatnik(Podatnik podatnik) {
+        this.podatnik = podatnik;
     }
 
     public Long getId() {

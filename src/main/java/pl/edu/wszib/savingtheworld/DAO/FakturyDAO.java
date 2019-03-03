@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface FakturyDAO extends CrudRepository<Faktury, Long> {
     Optional<Faktury> findById (Long id);
     List<Faktury> findAll();
+
+    List<Faktury> findAllByPodatnik(Podatnik podatnik);
+
 }

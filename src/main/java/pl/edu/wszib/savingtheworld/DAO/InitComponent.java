@@ -22,18 +22,19 @@ public class InitComponent {
     public void init() {
 
         IntStream.range(0, 10).forEach(i ->  {
+            Podatnik p = new Podatnik("ADam" + i, "Adam" + i);
+            Podatnik pSaved = podatnikDAO.save(p);
+
+     //   List<Faktury> wszystkie = fakturyDAO.findAll();
+
+                    IntStream.range(0, 10).forEach(j -> {
                         Faktury f = new Faktury(3.50, "cos");
+                        f.setPodatnik(pSaved);
                         f = fakturyDAO.save(f);
-                });
-
-        List<Faktury> wszystkie = fakturyDAO.findAll();
-
-        IntStream.range(0, 50).forEach(i -> {
-                        Podatnik p = new Podatnik("ADam" + i, "Adam" + i);
-                        p.setFaktury(Arrays.asList(wszystkie.get(i % 10), wszystkie.get((i+5) % 10)));
-                        p = podatnikDAO.save(p);
-                        p.getImie();
         });
+        });
+
+        System.out.println();
     }
     @PreDestroy
     public void teardown() {

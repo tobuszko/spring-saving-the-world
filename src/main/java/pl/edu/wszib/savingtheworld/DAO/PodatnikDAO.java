@@ -13,6 +13,6 @@ public interface PodatnikDAO extends CrudRepository<Podatnik, Long> {
     Optional<Podatnik> findByImie(String imie);
     List<Podatnik> findAllByNazwiskoIgnoreCaseOrderByImieDesc(String nazwisko);
     List<Podatnik> findAll();
-   // List<Podatnik> findAllByFaktury(String tytul);
+   List<Podatnik> findAllByFaktury_Tytul(String tytul);
 
 }

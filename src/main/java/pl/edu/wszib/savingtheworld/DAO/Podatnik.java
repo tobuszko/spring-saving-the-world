@@ -17,8 +17,11 @@ public class Podatnik {
     @Column(nullable = false)
     public  String nazwisko;
 
-    @OneToMany
+    @OneToMany(mappedBy = "podatnik", fetch = FetchType.EAGER)
     List<Faktury> faktury;
+
+
+
 
 
     public Podatnik () {
@@ -26,18 +29,20 @@ public class Podatnik {
     }
 
 
+
+
+    public Podatnik(String imie, String nazwisko) {
+
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+    }
+
     public List<Faktury> getFaktury() {
         return faktury;
     }
 
     public void setFaktury(List<Faktury> faktury) {
         this.faktury = faktury;
-    }
-
-    public Podatnik(String imie, String nazwisko) {
-
-        this.imie = imie;
-        this.nazwisko = nazwisko;
     }
 
     public Long getPesel() {
